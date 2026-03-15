@@ -49,7 +49,7 @@
     <h2 class="section-title">为您推荐</h2>
     <div class="product-grid" id="recommend-products">
       <div class="product-card">
-        <img src="goso_img/文胸/【国香致美杯】薄款聚拢记忆钢圈亲肤绵文胸.jpg" alt="【国香致美杯】薄款聚拢记忆钢圈亲肤绵文胸" class="product-image">
+        <img src="goso_img/文胸/【国香致美杯】薄款聚拢记忆钢圈亲肤绵文胸.jpg" alt="【国香致美杯】薄款聚拢记忆钢圈亲肤绵文胸" class="product-image" loading="lazy">
         <div class="product-info">
           <div class="product-name">【国香致美杯】薄款聚拢记忆钢圈亲肤绵文胸</div>
           <div class="product-tag">99元3件</div>
@@ -57,7 +57,7 @@
         </div>
       </div>
       <div class="product-card">
-        <img src="goso_img/家居服/柔美简雅长袖套装.jpg" alt="柔美简雅长袖套装" class="product-image">
+        <img src="goso_img/家居服/柔美简雅长袖套装.jpg" alt="柔美简雅长袖套装" class="product-image" loading="lazy">
         <div class="product-info">
           <div class="product-name">柔美简雅长袖套装</div>
           <div class="product-tag">买一送一</div>
@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="product-card">
-        <img src="goso_img/内裤/【云朵裤】柔软舒适中腰无尺码无痕云朵裤.jpg" alt="【云朵裤】柔软舒适中腰无尺码无痕云朵裤" class="product-image">
+        <img src="goso_img/内裤/【云朵裤】柔软舒适中腰无尺码无痕云朵裤.jpg" alt="【云朵裤】柔软舒适中腰无尺码无痕云朵裤" class="product-image" loading="lazy">
         <div class="product-info">
           <div class="product-name">【云朵裤】柔软舒适中腰无尺码无痕云朵裤</div>
           <div class="product-tag">买三送二</div>
@@ -73,7 +73,7 @@
         </div>
       </div>
       <div class="product-card">
-        <img src="goso_img/保暖衣/舒暖亲肤保暖套装.jpg" alt="舒暖亲肤保暖套装" class="product-image">
+        <img src="goso_img/保暖衣/舒暖亲肤保暖套装.jpg" alt="舒暖亲肤保暖套装" class="product-image" loading="lazy">
         <div class="product-info">
           <div class="product-name">舒暖亲肤保暖套装</div>
           <div class="product-tag">特价</div>
@@ -198,7 +198,7 @@
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" class="cart-image">
+          <img src="${product.image}" alt="${product.name}" class="cart-image" loading="lazy">
           <div class="cart-info">
             <div class="cart-name">${product.name}</div>
             <div class="cart-price">¥${product.price.toFixed(2)}</div>
@@ -227,7 +227,8 @@
       const item = cartItems[index];
       item.quantity += delta;
       if (item.quantity < 1) {
-        item.quantity = 1;
+        removeFromCart(index);
+        return;
       }
       saveCart();
       renderCart();

@@ -232,6 +232,27 @@ function addToCart(productId) {
   showToast('已添加到购物车');
 }
 
+function addToCartCommon(product) {
+  if (!product) return;
+  
+  const existingItem = cart.find(item => item.productId === product.id);
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push({
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+  }
+  
+  saveCart();
+  updateCartBadge();
+  showToast('已添加到购物车');
+}
+
 function removeFromCart(productId) {
   cart = cart.filter(item => item.productId !== productId);
   saveCart();

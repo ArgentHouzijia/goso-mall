@@ -93,7 +93,17 @@
     let currentSearch = '';
 
     document.addEventListener('DOMContentLoaded', function() {
-      loadProducts(currentCategory);
+      const selectedCategory = localStorage.getItem('selectedCategory') || '文胸';
+      localStorage.removeItem('selectedCategory');
+      
+      loadProducts(selectedCategory);
+      
+      document.querySelectorAll('.sidebar-item').forEach(item => {
+        if (item.dataset.category === selectedCategory) {
+          item.classList.add('active');
+        }
+      });
+      
       setupEventListeners();
     });
 
@@ -168,18 +178,28 @@
         
         productCard.innerHTML = `
           <div class="product-image-wrapper">
-            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy">
             ${activityTag}
           </div>
           <div class="product-info">
             <div class="product-name">${product.name}</div>
             <div class="product-bottom">
               <div class="product-price">¥${product.price.toFixed(2)}</div>
-              <button class="buy-btn" onclick="event.stopPropagation(); addToCart('${product.id}')">立即购买</button>
+              <button class="buy-btn" data-product-id="${product.id}">立即购买</button>
             </div>
           </div>
         `;
+        
         productCard.addEventListener('click', () => showToast('商品详情功能开发中'));
+        
+        const buyBtn = productCard.querySelector('.buy-btn');
+        if (buyBtn) {
+          buyBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            addToCart(product.id);
+          });
+        }
+        
         productList.appendChild(productCard);
       });
     }

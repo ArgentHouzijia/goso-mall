@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>香蜜闺秀 - 线上商场</title>
+  <link rel="icon" href="goso_img/favicon.ico">
+  <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+  <nav class="top-nav">
+    <img src="goso_img/logo.jpg" alt="香蜜闺秀" class="logo">
+    <div class="cart-btn" onclick="navigateTo('cart')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span class="badge" style="display: none;">0</span>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 48px; margin-bottom: 56px;">
+    <div class="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item">
+          <img src="carousel/文胸.png" alt="文胸99元3件">
+          <div class="carousel-overlay">
+            <div class="carousel-title">文胸99元3件</div>
+            <div class="carousel-desc">任意3件文胸总价99元</div>
+            <div class="carousel-btn">立即抢购</div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="carousel/内裤.png" alt="内裤买三送二">
+          <div class="carousel-overlay">
+            <div class="carousel-title">内裤买三送二</div>
+            <div class="carousel-desc">购买3条内裤，赠送2条</div>
+            <div class="carousel-btn">立即抢购</div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="carousel/家居服.png" alt="家居服买一送一">
+          <div class="carousel-overlay">
+            <div class="carousel-title">家居服买一送一</div>
+            <div class="carousel-desc">购买1件家居服，赠送1件</div>
+            <div class="carousel-btn">立即抢购</div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="carousel/保暖衣.png" alt="保暖衣特价">
+          <div class="carousel-overlay">
+            <div class="carousel-title">保暖衣特价</div>
+            <div class="carousel-desc">精选保暖衣低至99元</div>
+            <div class="carousel-btn">立即抢购</div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-indicators">
+        <div class="carousel-indicator active" data-index="0"></div>
+        <div class="carousel-indicator" data-index="1"></div>
+        <div class="carousel-indicator" data-index="2"></div>
+        <div class="carousel-indicator" data-index="3"></div>
+      </div>
+    </div>
+
+    <h2 class="section-title">活动推荐</h2>
+    <div class="activity-grid">
+      <div class="activity-card" onclick="navigateTo('category')">
+        <img src="carousel/文胸.png" alt="文胸99元3件">
+        <div class="activity-info">
+          <div class="activity-name">文胸99元3件</div>
+          <div class="activity-desc">任意3件文胸总价99元</div>
+        </div>
+      </div>
+      <div class="activity-card" onclick="navigateTo('category')">
+        <img src="carousel/内裤.png" alt="内裤买三送二">
+        <div class="activity-info">
+          <div class="activity-name">内裤买三送二</div>
+          <div class="activity-desc">购买3条内裤，赠送2条</div>
+        </div>
+      </div>
+      <div class="activity-card" onclick="navigateTo('category')">
+        <img src="carousel/家居服.png" alt="家居服买一送一">
+        <div class="activity-info">
+          <div class="activity-name">家居服买一送一</div>
+          <div class="activity-desc">购买1件家居服，赠送1件</div>
+        </div>
+      </div>
+      <div class="activity-card" onclick="navigateTo('category')">
+        <img src="carousel/保暖衣.png" alt="保暖衣特价">
+        <div class="activity-info">
+          <div class="activity-name">保暖衣特价</div>
+          <div class="activity-desc">精选保暖衣低至99元</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">热门商品</h2>
+    <div class="product-grid" id="hot-products"></div>
+  </div>
+
+  <nav class="bottom-nav">
+    <div class="nav-item active" data-page="index" onclick="navigateTo('index')">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span class="text">首页</span>
+    </div>
+    <div class="nav-item" data-page="category" onclick="navigateTo('category')">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+      </svg>
+      <span class="text">分类</span>
+    </div>
+    <div class="nav-item" data-page="cart" onclick="navigateTo('cart')">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span class="text">购物车</span>
+    </div>
+    <div class="nav-item" data-page="member" onclick="navigateTo('member')">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      <span class="text">我的</span>
+    </div>
+  </nav>
+
+  <script src="js/common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hotProductsContainer = document.getElementById('hot-products');
+      const allProducts = getAllProducts();
+      const tags = ['99元3件', '热销', '买一送一', '买三送二', '特价', '新品', '限时优惠', '推荐'];
+      
+      const hotProducts = allProducts.sort(() => 0.5 - Math.random()).slice(0, 12);
+      
+      hotProducts.forEach(product => {
+        const hasActivity = Math.random() < 0.7;
+        const activityTag = hasActivity ? `<span class="activity-tag">${getActivityTag(product.category)}</span>` : '';
+        
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+          <div class="product-image-wrapper">
+            <img src="${product.image}" alt="${product.name}" class="product-image">
+            ${activityTag}
+          </div>
+          <div class="product-info">
+            <div class="product-name">${product.name}</div>
+            <div class="product-bottom">
+              <div class="product-price">¥${product.price.toFixed(2)}</div>
+              <button class="buy-btn" onclick="event.stopPropagation(); addToCart('${product.id}')">立即购买</button>
+            </div>
+          </div>
+        `;
+        productCard.addEventListener('click', () => showToast('商品详情功能开发中'));
+        hotProductsContainer.appendChild(productCard);
+      });
+    });
+
+    function getActivityTag(category) {
+      const tags = {
+        '文胸': '99元3件',
+        '家居服': '买一送一',
+        '内裤': '买三送二',
+        '保暖衣': '满199减50'
+      };
+      return tags[category] || '热销';
+    }
+
+    function addToCart(productId) {
+      const product = getAllProducts().find(p => p.id === productId);
+      if (product) {
+        addToCartCommon(product);
+        showToast('已添加到购物车');
+      }
+    }
+  </script>
+</body>
+</html>

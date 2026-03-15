@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车 - 香蜜闺秀</title>
+  <link rel="icon" href="goso_img/favicon.ico">
+  <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+  <nav class="top-nav">
+    <img src="goso_img/logo.jpg" alt="香蜜闺秀" class="logo">
+    <div class="cart-btn" onclick="navigateTo('cart')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span class="badge" style="display: none;">0</span>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 48px; margin-bottom: 56px;">
+    <h2 class="section-title">我的购物车</h2>
+    
+    <div id="cart-items">
+    </div>
+
+    <div class="cart-summary" id="cart-summary">
+      <div class="summary-row">
+        <span>商品总数</span>
+        <span id="total-count">0件</span>
+      </div>
+      <div class="summary-row">
+        <span>商品总金额</span>
+        <span id="total-amount">¥0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>活动优惠</span>
+        <span id="discount-amount">-¥0.00</span>
+      </div>
+      <div class="summary-row total">
+        <span>应付金额</span>
+        <span class="price" id="pay-amount">¥0.00</span>
+      </div>
+      <button class="checkout-btn" id="checkout-btn" onclick="checkout()" disabled>去结算</button>
+    </div>
+
+    <h2 class="section-title">为您推荐</h2>
+    <div class="product-grid" id="recommend-products">
+      <div class="product-card">
+        <img src="goso_img/文胸/【国香致美杯】薄款聚拢记忆钢圈亲肤绵文胸.jpg" alt="【国香致美杯】薄款聚拢记忆钢圈亲肤绵文胸" class="product-image">
+        <div class="product-info">
+          <div class="product-name">【国香致美杯】薄款聚拢记忆钢圈亲肤绵文胸</div>
+          <div class="product-tag">99元3件</div>
+          <div class="product-price">¥129.00</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="goso_img/家居服/柔美简雅长袖套装.jpg" alt="柔美简雅长袖套装" class="product-image">
+        <div class="product-info">
+          <div class="product-name">柔美简雅长袖套装</div>
+          <div class="product-tag">买一送一</div>
+          <div class="product-price">¥79.90</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="goso_img/内裤/【云朵裤】柔软舒适中腰无尺码无痕云朵裤.jpg" alt="【云朵裤】柔软舒适中腰无尺码无痕云朵裤" class="product-image">
+        <div class="product-info">
+          <div class="product-name">【云朵裤】柔软舒适中腰无尺码无痕云朵裤</div>
+          <div class="product-tag">买三送二</div>
+          <div class="product-price">¥19.00</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="goso_img/保暖衣/舒暖亲肤保暖套装.jpg" alt="舒暖亲肤保暖套装" class="product-image">
+        <div class="product-info">
+          <div class="product-name">舒暖亲肤保暖套装</div>
+          <div class="product-tag">特价</div>
+          <div class="product-price">¥99.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <div class="nav-item" data-page="index" onclick="navigateTo('index')">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span class="text">首页</span>
+    </div>
+    <div class="nav-item" data-page="category" onclick="navigateTo('category')">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+      </svg>
+      <span class="text">分类</span>
+    </div>
+    <div class="nav-item active" data-page="cart" onclick="navigateTo('cart')">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span class="text">购物车</span>
+    </div>
+    <div class="nav-item" data-page="member" onclick="navigateTo('member')">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      <span class="text">我的</span>
+    </div>
+  </nav>
+
+  <script src="js/common.js"></script>
+  <script>
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const productData = [
+      {
+        id: 1,
+        name: '【国香致美杯】薄款聚拢记忆钢圈亲肤绵文胸',
+        category: '文胸',
+        image: 'goso_img/文胸/【国香致美杯】薄款聚拢记忆钢圈亲肤绵文胸.jpg',
+        price: 129,
+        tag: '99元3件'
+      },
+      {
+        id: 2,
+        name: '【国香黑绷带】薄款轻盈无钢圈亲肤绵内衣',
+        category: '文胸',
+        image: 'goso_img/文胸/【国香黑绷带】薄款轻盈无钢圈亲肤绵内衣.jpg',
+        price: 99,
+        tag: '热销'
+      },
+      {
+        id: 3,
+        name: '柔美简雅长袖套装',
+        category: '家居服',
+        image: 'goso_img/家居服/柔美简雅长袖套装.jpg',
+        price: 79.9,
+        tag: '买一送一'
+      },
+      {
+        id: 4,
+        name: '【云朵裤】柔软舒适中腰无尺码无痕云朵裤',
+        category: '内裤',
+        image: 'goso_img/内裤/【云朵裤】柔软舒适中腰无尺码无痕云朵裤.jpg',
+        price: 19,
+        tag: '买三送二'
+      },
+      {
+        id: 5,
+        name: '舒暖亲肤保暖套装',
+        category: '保暖衣',
+        image: 'goso_img/保暖衣/舒暖亲肤保暖套装.jpg',
+        price: 99,
+        tag: '特价'
+      }
+    ];
+
+    function renderCart() {
+      const container = document.getElementById('cart-items');
+      const summary = document.getElementById('cart-summary');
+      const checkoutBtn = document.getElementById('checkout-btn');
+
+      if (cartItems.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <div class="empty-text">购物车是空的</div>
+            <button class="empty-btn" onclick="navigateTo('category')">去逛逛</button>
+          </div>
+        `;
+        summary.style.display = 'none';
+        checkoutBtn.disabled = true;
+        updateSummary(0, 0, 0);
+        return;
+      }
+
+      summary.style.display = 'block';
+      checkoutBtn.disabled = false;
+
+      container.innerHTML = '';
+      cartItems.forEach((item, index) => {
+        const product = productData.find(p => p.id === item.productId);
+        if (!product) return;
+
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" class="cart-image">
+          <div class="cart-info">
+            <div class="cart-name">${product.name}</div>
+            <div class="cart-price">¥${product.price.toFixed(2)}</div>
+            <div class="cart-actions">
+              <div class="quantity-control">
+                <button class="quantity-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                <span class="quantity-display">${item.quantity}</span>
+                <button class="quantity-btn" onclick="changeQuantity(${index}, 1)">+</button>
+              </div>
+              <button class="delete-btn" onclick="removeFromCart(${index})">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(cartItem);
+      });
+
+      calculateTotal();
+    }
+
+    function changeQuantity(index, delta) {
+      const item = cartItems[index];
+      item.quantity += delta;
+      if (item.quantity < 1) {
+        item.quantity = 1;
+      }
+      saveCart();
+      renderCart();
+    }
+
+    function removeFromCart(index) {
+      cartItems.splice(index, 1);
+      saveCart();
+      renderCart();
+      showToast('已从购物车移除');
+    }
+
+    function calculateTotal() {
+      let totalCount = 0;
+      let totalAmount = 0;
+      let discountAmount = 0;
+
+      cartItems.forEach(item => {
+        const product = productData.find(p => p.id === item.productId);
+        if (!product) return;
+
+        totalCount += item.quantity;
+        totalAmount += product.price * item.quantity;
+      });
+
+      const braItems = cartItems.filter(item => {
+        const product = productData.find(p => p.id === item.productId);
+        return product && product.category === '文胸';
+      });
+
+      if (braItems.length >= 3) {
+        const braCount = braItems.reduce((sum, item) => sum + item.quantity, 0);
+        const braGroups = Math.floor(braCount / 3);
+        const braItemsInGroups = braGroups * 3;
+        const braItemsNotInGroups = braCount - braItemsInGroups;
+        
+        const braTotal = braItems.reduce((sum, item) => {
+          const product = productData.find(p => p.id === item.productId);
+          return sum + (product ? product.price * item.quantity : 0);
+        }, 0);
+        
+        discountAmount = braTotal - (braGroups * 99 + braItemsNotInGroups * 99);
+      }
+
+      updateSummary(totalCount, totalAmount, discountAmount);
+    }
+
+    function updateSummary(totalCount, totalAmount, discountAmount) {
+      document.getElementById('total-count').textContent = totalCount + '件';
+      document.getElementById('total-amount').textContent = '¥' + totalAmount.toFixed(2);
+      document.getElementById('discount-amount').textContent = '-¥' + discountAmount.toFixed(2);
+      document.getElementById('pay-amount').textContent = '¥' + (totalAmount - discountAmount).toFixed(2);
+    }
+
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      updateCartBadge();
+    }
+
+    function checkout() {
+      if (cartItems.length === 0) {
+        showToast('购物车是空的');
+        return;
+      }
+      showToast('结算功能开发中');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+    });
+  </script>
+</body>
+</html>
